@@ -3,74 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LegionM3 Control</title>
+    <title>Surveillance Robot Control Center</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="page">
-      <header>
-        <h1>LegionM3 Control Center</h1>
-        <p class="muted">Register a client and connect to a robot by UUID.</p>
-      </header>
-
-      <section class="panel">
-        <h2>Server</h2>
-        <div class="row">
-          <label>Server URL</label>
-          <input id="serverUrl" placeholder="https://legionm3.onrender.com" />
+    <section class="topbar">
+      <div class="topbar-inner">
+        <div class="topbar-brand">
+          <p class="eyebrow">Mission Control</p>
+          <h1>Surveillance Robot</h1>
+        </div>
+        <div class="topbar-controls">
+          <div class="top-item top-item-wide">
+            <label for="serverUrl">Server</label>
+            <input id="serverUrl" placeholder="https://legionm3.onrender.com" />
+          </div>
           <button id="saveServer">Save</button>
-        </div>
-      </section>
-
-      <section class="panel">
-        <h2>Client</h2>
-        <div class="row">
-          <label>Client ID</label>
-          <input id="clientId" placeholder="client-123" />
-          <button id="registerClient">Register Client</button>
-        </div>
-        <div class="row">
-          <label>Online Robots</label>
-          <select id="robotList"></select>
+          <div class="top-item">
+            <label for="clientId">Client</label>
+            <input id="clientId" placeholder="client-123" />
+          </div>
+          <button id="registerClient">Register</button>
+          <div class="top-item">
+            <label for="robotList">Online</label>
+            <select id="robotList"></select>
+          </div>
           <button id="refreshRobots">Refresh</button>
-        </div>
-      </section>
-
-      <section class="panel">
-        <h2>Connect</h2>
-        <div class="row">
-          <label>Robot UUID</label>
-          <input id="robotId" placeholder="robot-001" />
+          <div class="top-item">
+            <label for="robotId">Robot</label>
+            <input id="robotId" placeholder="robot-001" />
+          </div>
           <button id="connect">Connect</button>
           <button id="disconnect" class="secondary">Disconnect</button>
+          <p id="status" class="status-pill">Status: idle</p>
         </div>
-        <p id="status" class="muted">Status: idle</p>
-      </section>
+      </div>
+    </section>
 
-      <section class="grid">
+    <div class="page">
+      <header class="hero compact-hero">
+        <h2>Live Operations Dashboard</h2>
+        <p class="muted">Dual camera monitoring, drive control, and command telemetry.</p>
+      </header>
+
+      <section class="grid compact-grid">
         <div class="panel">
-          <h2>Live Video</h2>
+          <h2>Primary Camera</h2>
           <img id="video" class="video" alt="Live feed" />
-          <label class="row">
+          <label class="stream-option">
             <input id="useMjpeg" type="checkbox" />
             Use MJPEG (HTTP)
           </label>
         </div>
         <div class="panel">
-          <h2>Thermal</h2>
+          <h2>Thermal Camera</h2>
           <img id="thermalVideo" class="video" alt="Thermal feed" />
-          <label class="row">
+          <label class="stream-option">
             <input id="useMjpegThermal" type="checkbox" />
             Use MJPEG (HTTP)
           </label>
         </div>
       </section>
 
-      <section class="panel">
-        <h2>Drive</h2>
+      <section class="panel control-panel">
+        <h2>Drive Control</h2>
         <p class="muted">Use W/A/S/D or the buttons. Release to stop.</p>
-        <div class="row">
-          <label>Speed (0-255)</label>
+        <div class="row compact speed-row">
+          <label for="speedDial">Speed (0-255)</label>
           <input id="speedDial" type="range" min="0" max="255" value="100" />
           <span id="speedValue" class="muted">100</span>
         </div>
@@ -87,14 +86,14 @@
         </div>
       </section>
 
-      <section class="grid">
+      <section class="grid compact-grid">
         <div class="panel">
-          <h2>Telemetry</h2>
+          <h2>Telemetry Feed</h2>
           <pre id="telemetry" class="telemetry">No data yet.</pre>
         </div>
         <div class="panel">
-          <h2>Commands</h2>
-          <div class="row">
+          <h2>Manual Commands</h2>
+          <div class="row compact">
             <input id="commandInput" placeholder="e.g. MOVE_FORWARD" />
             <button id="sendCommand">Send</button>
           </div>
@@ -103,7 +102,7 @@
       </section>
 
       <section class="panel">
-        <h2>Logs</h2>
+        <h2>System Logs</h2>
         <pre id="log" class="telemetry">Waiting for events...</pre>
       </section>
     </div>
