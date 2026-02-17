@@ -207,6 +207,50 @@ button:disabled {
   white-space: pre-wrap;
 }
 
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.metric-card {
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  min-height: 92px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.metric-label {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.metric-value {
+  margin: 6px 0 4px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #f9fafb;
+  line-height: 1.1;
+}
+
+.metric-unit {
+  margin: 0;
+  color: #93c5fd;
+  font-size: 12px;
+}
+
+.record-row {
+  grid-template-columns: auto auto 1fr 1fr;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
 .drive-grid {
   display: grid;
   grid-template-columns: 80px 80px 80px;
@@ -257,6 +301,14 @@ button:disabled {
     grid-template-columns: 1fr;
   }
   .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .record-row {
     grid-template-columns: 1fr;
   }
 }

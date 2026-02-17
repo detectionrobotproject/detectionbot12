@@ -15,9 +15,9 @@ try:
 except Exception:
     GPIO = None
 
-SERVER_BASE = "wss://legionm3.onrender.com"
-SERVER_HTTP = "https://legionm3.onrender.com"
-ROBOT_UUID = "robot-002"
+SERVER_BASE = "wss://detectionbot12.onrender.com"
+SERVER_HTTP = "https://detectionbot12.onrender.com"
+ROBOT_UUID = "detectionbot"
 ROBOT_TYPE = "rpi-rover"
 WARMUP_URL = SERVER_HTTP
 WARMUP_ATTEMPTS = 3

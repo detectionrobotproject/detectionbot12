@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Surveillance Robot Control Center</title>
+    <title>Detection bot Control Center</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -11,27 +11,16 @@
       <div class="topbar-inner">
         <div class="topbar-brand">
           <p class="eyebrow">Mission Control</p>
-          <h1>Surveillance Robot</h1>
+          <h1>Detection bot</h1>
         </div>
         <div class="topbar-controls">
           <div class="top-item top-item-wide">
-            <label for="serverUrl">Server</label>
-            <input id="serverUrl" placeholder="https://legionm3.onrender.com" />
+            <label>Server</label>
+            <input id="serverUrl" value="https://detectionbot12.onrender.com" readonly />
           </div>
-          <button id="saveServer">Save</button>
           <div class="top-item">
-            <label for="clientId">Client</label>
-            <input id="clientId" placeholder="client-123" />
-          </div>
-          <button id="registerClient">Register</button>
-          <div class="top-item">
-            <label for="robotList">Online</label>
-            <select id="robotList"></select>
-          </div>
-          <button id="refreshRobots">Refresh</button>
-          <div class="top-item">
-            <label for="robotId">Robot</label>
-            <input id="robotId" placeholder="robot-001" />
+            <label>Robot</label>
+            <input id="robotId" value="detectionbot" readonly />
           </div>
           <button id="connect">Connect</button>
           <button id="disconnect" class="secondary">Disconnect</button>
@@ -43,7 +32,7 @@
     <div class="page">
       <header class="hero compact-hero">
         <h2>Live Operations Dashboard</h2>
-        <p class="muted">Dual camera monitoring, drive control, and command telemetry.</p>
+        <p class="muted">Dual camera monitoring, drive control, and telemetry monitoring.</p>
       </header>
 
       <section class="grid compact-grid">
@@ -89,7 +78,40 @@
       <section class="grid compact-grid">
         <div class="panel">
           <h2>Telemetry Feed</h2>
-          <pre id="telemetry" class="telemetry">No data yet.</pre>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <p class="metric-label">Temperature</p>
+              <p id="metricTemp" class="metric-value">--</p>
+              <p class="metric-unit">°C</p>
+            </div>
+            <div class="metric-card">
+              <p class="metric-label">Humidity</p>
+              <p id="metricHumidity" class="metric-value">--</p>
+              <p class="metric-unit">%RH</p>
+            </div>
+            <div class="metric-card">
+              <p class="metric-label">Methane</p>
+              <p id="metricMethane" class="metric-value">--</p>
+              <p class="metric-unit">ppm</p>
+            </div>
+            <div class="metric-card">
+              <p class="metric-label">Ammonia</p>
+              <p id="metricAmmonia" class="metric-value">--</p>
+              <p class="metric-unit">ppm</p>
+            </div>
+            <div class="metric-card">
+              <p class="metric-label">Alcohol</p>
+              <p id="metricAlcohol" class="metric-value">--</p>
+              <p class="metric-unit">ppm</p>
+            </div>
+          </div>
+
+          <div class="row compact record-row">
+            <button id="toggleRecording">Start record data</button>
+            <button id="downloadCsv" class="secondary" disabled>Download CSV</button>
+            <span id="recordingStatus" class="muted">Not recording</span>
+            <span id="lastTelemetryTs" class="muted">Last update: --</span>
+          </div>
         </div>
         <div class="panel">
           <h2>Manual Commands</h2>
@@ -99,11 +121,6 @@
           </div>
           <pre id="commandLog" class="telemetry">No commands yet.</pre>
         </div>
-      </section>
-
-      <section class="panel">
-        <h2>System Logs</h2>
-        <pre id="log" class="telemetry">Waiting for events...</pre>
       </section>
     </div>
     <script src="./app.js"></script>
